@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos - Minha Petcare</title>
+    <style>
+        /* Estilos gerais para o corpo da página */
+        body {
+            font-family: sans-serif;
+            margin: 0; /* Remove margens padrão do corpo para que o fundo cinza escuro cubra tudo */
+            background-color: #333; /* Cor de fundo cinza escuro */
+            color: #333; /* Cor do texto padrão (será sobrescrita em elementos específicos) */
+            display: flex; /* Habilita o Flexbox para centralização */
+            justify-content: center; /* Centraliza o conteúdo horizontalmente */
+            align-items: center; /* Centraliza o conteúdo verticalmente */
+            min-height: 100vh; /* Garante que o corpo ocupe pelo menos 100% da altura da viewport */
+            box-sizing: border-box; /* Inclui padding e border na largura/altura total */
+        }
+
+        /* Estilos para o contêiner principal */
+        .container {
+            max-width: 800px; /* Largura máxima para o contêiner */
+            width: 80%; /* O contêiner ocupará 80% da largura, resultando em um recuo total de 20% (10% de cada lado) */
+            background-color: #fff; /* Fundo branco para o conteúdo */
+            padding: 20px 30px; /* Espaçamento interno */
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            text-align: center; /* Centraliza o texto dentro do container */
+        }
+
+        /* Estilos para o título principal */
+        h1 {
+            text-align: center;
+            color: #007bff; /* Cor azul para o título */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        /* Estilos para seções de contato */
+        .contact-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .contact-section h2 {
+            color: #007bff;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .contact-section p {
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .contact-section p strong {
+            color: #333;
+        }
+
+        .contact-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos de responsividade */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%; /* Em telas menores, ocupe mais largura para melhor usabilidade */
+                padding: 15px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .contact-section h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fale Conosco - Equipe Petcare</h1>
+
+        <div class="contact-section">
+            <h2>Proprietário</h2>
+            <p><strong>Nome:</strong> [Nome do Proprietário]</p>
+            <p><strong>Telefone:</strong> <a href="tel:+55XXYYYY-AAAA">[XX] YYYY-AAAA</a></p>
+            <p><strong>Email:</strong> <a href="mailto:proprietario@suapetcare.com.br">proprietario@suapetcare.com.br</a></p>
+            <p>Para assuntos gerais, parcerias e feedback.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Gerente de Operações</h2>
+            <p><strong>Nome:</strong> [Nome do Gerente]</p>
+            <p><strong>Telefone:</strong> <a href="tel:+55XXZZZZ-BBBB">[XX] ZZZZ-BBBB</a></p>
+            <p><strong>Email:</strong> <a href="mailto:gerencia@suapetcare.com.br">gerencia@suapetcare.com.br</a></p>
+            <p>Para agendamentos, dúvidas sobre serviços e reclamações.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Equipe de Atendimento</h2>
+            <p><strong>Telefone Principal:</strong> <a href="tel:+55XXWWWW-CCCC">[XX] WWWW-CCCC</a></p>
+            <p><strong>Whatsapp:</strong> <a href="https://wa.me/55XXWWWWCCCC" target="_blank">[XX] WWWW-CCCC</a></p>
+            <p><strong>Email:</strong> <a href="mailto:atendimento@suapetcare.com.br">atendimento@suapetcare.com.br</a></p>
+            <p>Para informações sobre banho e tosa, creche e hospedagem.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Emergências Veterinárias (Parceiro)</h2>
+            <p><strong>Clínica:</strong> Clínica Veterinária Sempre Saudável</p>
+            <p><strong>Telefone:</strong> <a href="tel:+55XXKKKK-DDDD">[XX] KKKK-DDDD</a></p>
+            <p><strong>Endereço:</strong> Rua da Paz, 123 - Cidade, UF</p>
+            <p>Atendimento 24h. Recomendamos contato prévio.</p>
+        </div>
+
+        <p style="margin-top: 40px; color: #777;">
+            Sua Petcare - Cuidando do seu melhor amigo com carinho!
+        </p>
+    </div>
+</body>
+</html>

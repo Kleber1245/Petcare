@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare - Seu App de Cuidado Animal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Petcare.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviços</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+        </ul>
+    </nav>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="Logo.jpg" alt="PetCare Logo">
+                <h1>PetCare</h1>
+            </div>
+            <p class="tagline">Cuidado e carinho para o seu pet, na palma da sua mão!</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="sobre-app">
+            <div class="container">
+                <h2>Sobre o PetCare</h2>
+                <p>O PetCare é o aplicativo perfeito para tutores de animais de estimação. Oferecemos uma variedade de recursos para facilitar o cuidado com seus companheiros peludos, desde agendamento de serviços até dicas de bem-estar e acompanhamento da saúde.</p>
+                <div class="feature-highlights">
+                    <div class="feature-card">
+                        <img src="icon-lembretes.png" alt="Lembretes">
+                        <h3>Lembretes Personalizados</h3>
+                        <p>Nunca perca um compromisso ou medicação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Baixe agora!</h2>
+                <p>Experimente a melhor forma de cuidar do seu pet.</p>
+                <div class="app-links-container">
+                    <a href="https://play.google.com/store/apps?hl=pt_BR&gl=US" target="_blank" class="app-store-link google-play">
+                        <img src="google-play-badge.png" alt="Disponível no Google Play">
+                    </a>
+                    <a href="https://www.apple.com/br/app-store/" target="_blank" class="app-store-link app-store">
+                        <img src="app-store-badge.png" alt="Disponível na App Store">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PetCare. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Adicione aqui qualquer script JavaScript que você precise
+        // Por exemplo, para animações sutis ou interação
+        document.querySelectorAll('.app-store-link').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                link.style.transform = 'scale(1.05)';
+                link.style.transition = 'transform 0.2s ease-in-out';
+            });
+            link.addEventListener('mouseout', () => {
+                link.style.transform = 'scale(1)';
+                link.style.transition = 'transform 0.2s ease-in-out';
+            });
+        });
+    </script>
+</body>
+</html>

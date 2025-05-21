@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - PetShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis CSS para cores e fontes */
+        :root {
+            --primary-color: #3498db; /* Azul vibrante para elementos principais */
+            --secondary-color: #2ecc71; /* Verde para destaques e botões de ação */
+            --dark-heading-color: #2c3e50; /* Cinza escuro para títulos */
+            --text-color: #555; /* Cinza médio para textos gerais */
+            --light-bg-color: #f8f9fa; /* Fundo mais claro */
+            --white-color: #ffffff;
+            --black-color: #000000;
+            --border-color: #e0e0e0; /* Cor de borda mais suave */
+            --box-shadow-light: rgba(0, 0, 0, 0.08);
+            --box-shadow-medium: rgba(0, 0, 0, 0.12);
+            --box-shadow-strong: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: left;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0;
+            background-color: var(--white-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px var(--box-shadow-strong);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        header {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: var(--white-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        header .logo img {
+            height: 90px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px var(--box-shadow-light);
+        }
+
+        header h1 {
+            font-size: 3.8em;
+            color: var(--dark-heading-color);
+            margin-bottom: 10px;
+            letter-spacing: -0.03em;
+            font-weight: 700;
+        }
+
+        header .tagline {
+            font-size: 1.4em;
+            color: var(--text-color);
+            font-weight: 300;
+            margin-top: 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--box-shadow-strong);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            background-color: transparent;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-size: 1.15em;
+            font-weight: 600;
+            border: 2px solid transparent;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--box-shadow-medium);
+            border-color: var(--white-color);
+        }
+
+        main {
+            padding: 60px 20px;
+            background-color: var(--white-color);
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .payment-section {
+            background-color: var(--white-color);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--box-shadow-light);
+            width: 100%;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .payment-section h2 {
+            font-size: 2.8em;
+            color: var(--dark-heading-color);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Estilos para os botões de seleção de método de pagamento */
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .payment-method-btn {
+            background-color: var(--light-bg-color);
+            border: 2px solid var(--border-color);
+            color: var(--dark-heading-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-method-btn img {
+            height: 25px;
+            width: auto;
+        }
+
+        .payment-method-btn:hover {
+            background-color: #f0f0f0;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--box-shadow-light);
+        }
+
+        .payment-method-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px var(--box-shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        .payment-method-btn.active img {
+            filter: brightness(0) invert(1); /* Deixa o ícone branco quando ativo */
+        }
+
+
+        /* Conteúdo específico para cada método de pagamento */
+        .payment-content {
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .payment-content h3 {
+            font-size: 1.8em;
+            color: var(--dark-heading-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-heading-color);
+            font-size: 1.05em;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            color: var(--text-color);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.25em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px var(--box-shadow-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--box-shadow-strong);
+        }
+
+        /* Estilos específicos para Boleto e Pix */
+        #boleto-info, #pix-info {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light-bg-color);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        #boleto-info p, #pix-info p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: var(--text-color);
+        }
+
+        #boleto-codigo, #pix-qrcode-text {
+            display: inline-block;
+            background-color: var(--white-color);
+            border: 1px dashed var(--border-color);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--dark-heading-color);
+            word-break: break-all; /* Quebra palavras longas */
+        }
+
+        #pix-qrcode-img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 20px auto 10px auto;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .copy-button {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .copy-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+
+        footer {
+            background-color: var(--black-color);
+            color: #dcdcdc;
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 0.9em;
+            border-top: 1px solid #444;
+        }
+
+        footer p {
+            margin-bottom: 25px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            opacity: 0.9;
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .social-links img {
+            height: 40px;
+            filter: grayscale(100%) brightness(150%);
+            transition: filter 0.3s ease;
+        }
+
+        .social-links img:hover {
+            filter: grayscale(0%) brightness(100%);
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 1200px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 40px 15px; }
+            header .logo img { height: 70px; }
+            header h1 { font-size: 2.5em; }
+            header .tagline { font-size: 1.1em; }
+            nav ul { flex-direction: column; gap: 10px; }
+            nav ul li a { width: calc(100% - 40px); max-width: 300px; margin: 0 auto; }
+
+            main { padding: 40px 15px; }
+            .payment-section { padding: 30px; }
+            .payment-section h2 { font-size: 2.2em; margin-bottom: 25px; }
+            .payment-methods { flex-direction: column; gap: 10px; }
+            .payment-method-btn { width: 100%; max-width: 300px; margin: 0 auto; }
+            .form-row { flex-direction: column; gap: 0; }
+            .form-row .form-group { margin-bottom: 20px; }
+            .form-group input, .form-group select { width: 100%; padding: 10px; }
+            .btn-submit { padding: 12px 25px; font-size: 1.1em; }
+            footer { padding: 30px 15px; }
+            .social-links img { height: 35px; }
+        }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 2em; }
+            header .tagline { font-size: 1em; }
+            .payment-section h2 { font-size: 1.8em; }
+            .payment-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="Logo.jpg" alt="Logotipo PetShop">
+                <h1>PetShop</h1>
+                <p class="tagline">O melhor para o seu amigo de quatro patas</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Produtos</a></li>
+                    <li><a href="Carrinho de Compras.html">Carrinho</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="payment-section">
+                <h2>Finalizar Pagamento</h2>
+
+                <h3>Selecione o método de pagamento</h3>
+                <div class="payment-methods">
+                    <button type="button" class="payment-method-btn active" data-method="credit-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Visa_logo.svg/1200px-Visa_logo.svg.png" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/800px-Mastercard-logo.svg.png" alt="Mastercard">
+                        Cartão de Crédito
+                    </button>
+                    <button type="button" class="payment-method-btn" data-method="boleto">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Boleto-icon.svg/1200px-Boleto-icon.svg.png" alt="Boleto">
+                        Boleto Bancário
+                    </button>
+                    <button type="button" class="payment-method-btn" data-method="pix">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pix_logo.svg/1200px-Pix_logo.svg.png" alt="Pix">
+                        Pix
+                    </button>
+                </div>
+
+                <form id="payment-form">
+                    <h3>Informações de Contato</h3>
+                    <div class="form-group">
+                        <label for="nome-completo">Nome Completo</label>
+                        <input type="text" id="nome-completo" name="nomeCompleto" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                        </div>
+                    </div>
+
+                    <h3>Endereço de Entrega</h3>
+                    <div class="form-group">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Complemento" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <input type="text" id="estado" name="estado" maxlength="2" placeholder="Ex: SP" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" placeholder="XXXXX-XXX" required>
+                        </div>
+                    </div>
+
+                    <div id="credit-card-fields" class="payment-content">
+                        <h3>Detalhes do Pagamento (Cartão de Crédito)</h3>
+                        <div class="form-group">
+                            <label for="numero-cartao">Número do Cartão</label>
+                            <input type="text" id="numero-cartao" name="numeroCartao" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome-cartao">Nome no Cartão</label>
+                            <input type="text" id="nome-cartao" name="nomeCartao">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validade-cartao">Validade (MM/AA)</label>
+                                <input type="text" id="validade-cartao" name="validadeCartao" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="XXX" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="boleto-info" class="payment-content" style="display: none;">
+                        <h3>Detalhes do Pagamento (Boleto Bancário)</h3>
+                        <p>O boleto será gerado após a confirmação do pedido.</p>
+                        <p>Você poderá imprimi-lo ou copiar o código de barras para pagamento.</p>
+                        <p>O prazo de vencimento do boleto é de **3 dias úteis**.</p>
+                        <p>A confirmação do pagamento pode levar até **2 dias úteis**.</p>
+                    </div>
+
+                    <div id="pix-info" class="payment-content" style="display: none;">
+                        <h3>Detalhes do Pagamento (Pix)</h3>
+                        <p>Pague com Pix de forma rápida e segura! Escaneie o QR Code ou copie e cole o código Pix no seu aplicativo de banco.</p>
+                        <img id="pix-qrcode-img" src="https://www.cobrancaonline.com.br/wp-content/uploads/2021/04/qrcode-pix.png" alt="QR Code Pix - Exemplo">
+                        <p>Ou copie o código:</p>
+                        <span id="pix-qrcode-text">00020126360014BR.GOV.BCB.PIX011400000000000000005204000053039865802BR5922FULANO DE TAL DA SILVA6008BRASILIA62070503***6304E85C</span>
+                        <button type="button" class="copy-button" onclick="copyPixCode()">Copiar Código Pix</button>
+                        <p style="margin-top: 20px;">A confirmação do pagamento Pix é **instantânea**.</p>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Pagar Agora</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>Seu amigo merece o melhor! Encontre tudo para ele em nosso PetShop. Oferecemos produtos de qualidade, atendimento especializado e um carinho que só quem ama pets entende.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/facebook-logo-5.png" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/Twitter-logo-1.png" alt="Twitter"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png" alt="Instagram"></a>
+            </div>
+            <p style="margin-top: 25px;">© 2025 PetShop. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentPaymentMethod = 'credit-card'; // Método de pagamento inicial
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentMethodButtons = document.querySelectorAll('.payment-method-btn');
+            const creditCardFields = document.getElementById('credit-card-fields');
+            const boletoInfo = document.getElementById('boleto-info');
+            const pixInfo = document.getElementById('pix-info');
+            const paymentForm = document.getElementById('payment-form');
+
+            // Função para alternar os campos de pagamento
+            function showPaymentFields(method) {
+                creditCardFields.style.display = 'none';
+                boletoInfo.style.display = 'none';
+                pixInfo.style.display = 'none';
+
+                // Habilita/desabilita 'required' para os campos do cartão
+                const cardInputs = creditCardFields.querySelectorAll('input');
+                cardInputs.forEach(input => {
+                    if (method === 'credit-card') {
+                        input.setAttribute('required', 'true');
+                    } else {
+                        input.removeAttribute('required');
+                    }
+                });
+
+                if (method === 'credit-card') {
+                    creditCardFields.style.display = 'block';
+                } else if (method === 'boleto') {
+                    boletoInfo.style.display = 'block';
+                } else if (method === 'pix') {
+                    pixInfo.style.display = 'block';
+                }
+                currentPaymentMethod = method;
+            }
+
+            // Adiciona listeners aos botões de método de pagamento
+            paymentMethodButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove a classe 'active' de todos os botões
+                    paymentMethodButtons.forEach(btn => btn.classList.remove('active'));
+                    // Adiciona a classe 'active' ao botão clicado
+                    this.classList.add('active');
+                    // Mostra os campos correspondentes
+                    showPaymentFields(this.dataset.method);
+                });
+            });
+
+            // Lidar com o envio do formulário
+            paymentForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                // Coletar dados de contato e endereço (sempre necessários)
+                const contactAddressData = {
+                    nomeCompleto: document.getElementById('nome-completo').value,
+                    email: document.getElementById('email').value,
+                    telefone: document.getElementById('telefone').value,
+                    endereco: document.getElementById('endereco').value,
+                    cidade: document.getElementById('cidade').value,
+                    estado: document.getElementById('estado').value,
+                    cep: document.getElementById('cep').value
+                };
+
+                let paymentData = {};
+                let message = '';
+
+                if (currentPaymentMethod === 'credit-card') {
+                    paymentData = {
+                        numeroCartao: document.getElementById('numero-cartao').value,
+                        nomeCartao: document.getElementById('nome-cartao').value,
+                        validadeCartao: document.getElementById('validade-cartao').value,
+                        cvv: document.getElementById('cvv').value
+                    };
+                    message = 'Pagamento com Cartão de Crédito processado com sucesso!';
+                } else if (currentPaymentMethod === 'boleto') {
+                    // Aqui você faria uma chamada ao backend para gerar o boleto
+                    // Por enquanto, apenas simula
+                    message = 'Boleto gerado com sucesso! Verifique as instruções abaixo para pagamento.';
+                    // Para um ambiente real, você poderia, por exemplo,
+                    // redirecionar para uma página com o link do boleto.
+                    // window.open('link_do_boleto.pdf', '_blank');
+                } else if (currentPaymentMethod === 'pix') {
+                    // Aqui você faria uma chamada ao backend para gerar o QR Code/código Pix
+                    // Por enquanto, apenas simula
+                    message = 'Pagamento Pix confirmado! Utilize o QR Code ou código para realizar a transferência.';
+                }
+
+                console.log('Método de Pagamento:', currentPaymentMethod);
+                console.log('Dados de Contato e Endereço:', contactAddressData);
+                console.log('Dados de Pagamento:', paymentData);
+
+                alert(message + ' Redirecionando para a página de confirmação.');
+
+                // Limpar o carrinho (opcional, dependendo do fluxo)
+                sessionStorage.removeItem('carrinho');
+
+                // Redirecionar para uma página de confirmação (pode ser a mesma para todos os métodos)
+                window.location.href = 'confirmacao_pagamento.html'; // Crie esta página!
+            });
+
+            // Funções de máscara de input
+            document.getElementById('numero-cartao').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+            });
+
+            document.getElementById('validade-cartao').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/, '$1/').slice(0, 5);
+            });
+
+            document.getElementById('cep').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').replace(/^(\d{5})(\d)/, '$1-$2').slice(0, 9);
+            });
+
+            document.getElementById('telefone').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/g, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2').slice(0, 15);
+            });
+        });
+
+        // Função para copiar o código Pix
+        function copyPixCode() {
+            const pixCodeElement = document.getElementById('pix-qrcode-text');
+            const range = document.createRange();
+            range.selectNodeContents(pixCodeElement);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            try {
+                document.execCommand('copy');
+                alert('Código Pix copiado para a área de transferência!');
+            } catch (err) {
+                console.error('Falha ao copiar o código Pix: ', err);
+                alert('Erro ao copiar o código Pix. Por favor, copie manualmente.');
+            }
+            selection.removeAllRanges(); // Desseleciona o texto
+        }
+    </script>
+</body>
+</html>

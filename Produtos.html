@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos para Cachorros - PetShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+         /* Variáveis CSS para cores e fontes (AJUSTADAS PARA ASSEMELHAR A PETCARE.CSS) */
+:root {
+    --primary-color: #3498db; /* Mantém azul para elementos principais */
+    --secondary-color: #2ecc71; /* Mantém verde para destaques e botões de ação */
+    --dark-heading-color: #2c3e50; /* Cinza escuro para títulos (mantido) */
+    --text-color: #555; /* Cinza médio para textos gerais (mantido) */
+    --light-bg-color: #f8f9fa; /* Fundo mais claro (mantido) */
+    --white-color: #ffffff;
+    --black-color: #000000; /* Cor preta forte, como em Petcare.css */
+    --gray-bg-color: #333; /* Novo: Para o fundo do body e botões de navegação */
+    --light-gray-text: #b0b0b0; /* Novo: Para o hover de botões de navegação */
+    --footer-text-color: #dcdcdc; /* Cor do texto do footer mais clara */
+    --border-color: #e0e0e0; /* Cor de borda mais suave (mantida) */
+    --box-shadow-light: rgba(0, 0, 0, 0.08);
+    --box-shadow-medium: rgba(0, 0, 0, 0.12);
+    --box-shadow-strong: rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    /* Aumenta o recuo lateral da página em 20% */
+    padding: 0 20%;
+    background-color: var(--gray-bg-color); /* Fundo do body como em Petcare.css */
+    color: var(--text-color);
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto; /* Removido margem superior/inferior para encaixar melhor */
+    padding: 0;
+    background-color: var(--white-color);
+    border-radius: 8px; /* Reduzido para 8px como Petcare.css */
+    box-shadow: 0 4px 12px var(--box-shadow-medium); /* Sombra mais sutil */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+header {
+    padding: 70px 0; /* Ajustado para 70px como Petcare.css */
+    text-align: center;
+    background-color: var(--white-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+header .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Ajustado para 20px como Petcare.css */
+}
+
+header .logo img {
+    height: 80px; /* Ajustado para 80px como Petcare.css */
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px var(--box-shadow-light);
+}
+
+header h1 {
+    font-size: 3.5em; /* Ajustado para 3.5em como Petcare.css */
+    color: var(--dark-heading-color);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em; /* Ajustado para -0.02em como Petcare.css */
+    font-weight: 700;
+}
+
+header .tagline {
+    font-size: 1.3em; /* Ajustado para 1.3em como Petcare.css */
+    color: #666; /* Cor específica como em Petcare.css */
+    font-weight: 300;
+    margin-top: 0;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav {
+    background-color: var(--black-color); /* Preto como em Petcare.css */
+    padding: 10px 0; /* Ajustado para 10px como Petcare.css */
+    text-align: center;
+    position: relative; /* Mantido relative para o fluxo normal */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--box-shadow-strong);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* Reduzido para 5px como Petcare.css */
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--white-color);
+    padding: 4px 8px; /* Ajustado para 4px 8px como Petcare.css */
+    border-radius: 50px;
+    background-color: var(--gray-bg-color); /* Fundo dos botões como em Petcare.css */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 0.75em; /* Ajustado para 0.75em como Petcare.css */
+    font-weight: 600;
+    border: none; /* Removido a borda para se assemelhar a Petcare.css */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adicionado box-shadow como Petcare.css */
+    display: inline-flex; /* Para centralizar o texto verticalmente */
+    align-items: center;
+    justify-content: center;
+    min-width: 25px; /* Mínimo para botões de navegação */
+    height: 25px; /* Altura para botões de navegação */
+    line-height: 0; /* Para centralizar o texto verticalmente */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--light-gray-text); /* Cor de hover como Petcare.css */
+    transform: translateY(-2px); /* Elevação sutil */
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); /* Sombra mais forte no hover */
+    border-color: transparent; /* Garante que a borda não apareça no hover */
+}
+
+main {
+    padding: 40px 0;
+    background-color: var(--white-color);
+    flex-grow: 1;
+}
+
+.produtos-destaque {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: var(--white-color);
+}
+
+.produtos-destaque h2 {
+    font-size: 3.2em;
+    color: var(--dark-heading-color);
+    margin-bottom: 45px;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+}
+
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+    justify-items: center;
+}
+
+.produto-card {
+    background-color: var(--white-color);
+    border-radius: 10px; /* Ajustado para 10px como Petcare.css feature-card */
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--box-shadow-light); /* Sombra mais nítida, similar a Petcare.css */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.produto-card:hover {
+    transform: translateY(-10px); /* Elevação mais sutil como Petcare.css */
+    box-shadow: 0 6px 20px var(--box-shadow-medium); /* Sombra mais forte no hover */
+}
+
+.produto-card img {
+    height: 220px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    object-fit: cover;
+    width: 100%;
+    border: 1px solid var(--border-color);
+}
+
+.produto-card h3 {
+    font-size: 1.6em;
+    color: var(--dark-heading-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.produto-card p {
+    font-size: 1em;
+    color: var(--text-color);
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.produto-card .preco {
+    font-size: 1.6em;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.produto-card button {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 14px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.15em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--box-shadow-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.produto-card button:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--box-shadow-medium);
+}
+
+footer {
+    background-color: var(--black-color); /* Preto como em Petcare.css */
+    color: var(--footer-text-color); /* Cor do texto do footer */
+    text-align: center;
+    padding: 40px 0; /* Ajustado para 40px 0 como Petcare.css */
+    font-size: 0.95em; /* Ajustado para 0.95em como Petcare.css */
+    border-top: 1px solid #495f75; /* Borda sutil como Petcare.css */
+}
+
+footer p {
+    margin-bottom: 20px; /* Ajustado para 20px como Petcare.css */
+    text-align: left; /* Alinhamento à esquerda como Petcare.css */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Ajustado para 20px como Petcare.css */
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    opacity: 0.8; /* Ajustado para 0.8 como Petcare.css */
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Efeito de escala mais sutil como Petcare.css */
+}
+
+.social-links img {
+    height: 35px; /* Ajustado para 35px como Petcare.css */
+    filter: grayscale(100%) brightness(150%);
+    transition: filter 0.3s ease;
+}
+
+.social-links img:hover {
+    filter: grayscale(0%) brightness(100%);
+}
+
+/* --- Responsividade Aprimorada --- */
+@media (max-width: 1200px) {
+    .container {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        padding: 0 10%; /* Ajusta o recuo para telas menores */
+    }
+
+    header h1 {
+        font-size: 3em;
+    }
+
+    header .tagline {
+        font-size: 1.3em;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    nav ul li a {
+        padding: 10px 20px;
+        font-size: 1.05em;
+    }
+
+    .produtos-destaque h2 {
+        font-size: 2.8em;
+    }
+
+    .produtos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .produto-card {
+        padding: 25px;
+    }
+
+    .produto-card img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 5%; /* Ajusta o recuo para telas ainda menores */
+    }
+    
+    header {
+        padding: 50px 15px; /* Ajustado para 50px de padding superior/inferior */
+    }
+
+    header .logo img {
+        height: 70px;
+    }
+
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    header .tagline {
+        font-size: 1.1em;
+    }
+
+    nav {
+        padding: 12px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        width: calc(100% - 40px);
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .produtos-destaque {
+        padding: 40px 15px;
+    }
+
+    .produtos-destaque h2 {
+        font-size: 2.2em;
+    }
+
+    .produtos-grid {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+
+    .produto-card {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .produto-card img {
+        height: 180px;
+    }
+
+    .produto-card h3 {
+        font-size: 1.4em;
+    }
+
+    .produto-card p {
+        font-size: 0.95em;
+    }
+
+    .produto-card .preco {
+        font-size: 1.5em;
+    }
+
+    .produto-card button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    footer {
+        padding: 30px 15px;
+    }
+
+    .social-links img {
+        height: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 0; /* Remove recuo em telas muito pequenas */
+    }
+
+    header h1 {
+        font-size: 2.5em; /* Mantido como em Petcare.css */
+    }
+    header .tagline {
+        font-size: 1.2em; /* Mantido como em Petcare.css */
+    }
+    .produtos-destaque h2 {
+        font-size: 2.2em; /* Mantido como em Petcare.css cta h2 */
+    }
+    .produto-card img {
+        height: 150px;
+    }
+
+    /* Navegação mais compacta em telas menores */
+    nav ul {
+        gap: 3px; /* Mais compacto */
+    }
+
+    nav ul li a {
+        font-size: 0.7em; /* Menor fonte */
+        padding: 3px 6px; /* Menor padding */
+        min-width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+    header .tagline {
+        font-size: 1em;
+    }
+    .produtos-destaque h2 {
+        font-size: 1.8em;
+    }
+    .produto-card img {
+        height: 150px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+
+        <header>
+            <div class="logo">
+                <img src="Logo.jpg" alt="Logotipo PetShop">
+                <h1>PetShop</h1>
+                <p class="tagline">O melhor para o seu amigo de quatro patas</p>
+            </div>
+        </header>
+
+        <main>
+            <section id="produtos" class="produtos-destaque">
+                <h2>Produtos em Destaque</h2>
+                <div class="produtos-grid">
+                    <div class="produto-card">
+                        <img src="Mini Coleira.jpg" alt="Mini Coleira para Cachorro">
+                        <h3>Mini Coleira para Cachorro</h3>
+                        <p>Coleira resistente e confortável, disponível em várias cores para pets de pequena estatura.</p>
+                        <p class="preco" data-preco="25.99">R$25,99</p>
+                        <button class="adicionar-carrinho"
+                                data-id="1"
+                                data-nome="Mini Coleira para Cachorro"
+                                data-imagem="Mini Coleira.jpg"
+                                data-descricao="Coleira resistente e confortável, disponível em várias cores para pets de pequena estatura.">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                    <div class="produto-card">
+                        <img src="Ração Premium.jpg" alt="Ração para Cachorro">
+                        <h3>Ração Premium</h3>
+                        <p>Ração de alta qualidade, balanceada para todas as raças e portes, garantindo energia e saúde.</p>
+                        <p class="preco" data-preco="59.90">R$59,90</p>
+                        <button class="adicionar-carrinho"
+                                data-id="2"
+                                data-nome="Ração Premium"
+                                data-imagem="Ração Premium.jpg"
+                                data-descricao="Ração de alta qualidade, balanceada para todas as raças e portes, garantindo energia e saúde.">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                    <div class="produto-card">
+                        <img src="Brinquedo Interativo.jpg" alt="Brinquedo para Cachorro">
+                        <h3>Brinquedo Interativo</h3>
+                        <p>Brinquedo porta petisco para que você possa ensinar o instinto de recompensa ao seu Pet. Resistente e seguro.</p>
+                        <p class="preco" data-preco="34.50">R$34,50</p>
+                        <button class="adicionar-carrinho"
+                                data-id="3"
+                                data-nome="Brinquedo Interativo"
+                                data-imagem="Brinquedo Interativo.jpg"
+                                data-descricao="Brinquedo porta petisco para que você possa ensinar o instinto de recompensa ao seu Pet. Resistente e seguro.">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                    <div class="produto-card">
+                        <img src="Cama Casinha.jpg" alt="Cama para Cachorro">
+                        <h3>Cama Confortável</h3>
+                        <p>Cama Casinha macia e aconchegante, perfeita para o descanso do seu pet. Proporciona noites de sono tranquilas.</p>
+                        <p class="preco" data-preco="89.99">R$89,99</p>
+                        <button class="adicionar-carrinho"
+                                data-id="4"
+                                data-nome="Cama Confortável"
+                                data-imagem="Cama Casinha.jpg"
+                                data-descricao="Cama Casinha macia e aconchegante, perfeita para o descanso do seu pet. Proporciona noites de sono tranquilas.">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Seu amigo merece o melhor! Encontre tudo para ele em nosso PetShop. Oferecemos produtos de qualidade, atendimento especializado e um carinho que só quem ama pets entende.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/facebook-logo-5.png" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/Twitter-logo-1.png" alt="Twitter"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png" alt="Instagram"></a>
+            </div>
+            <p style="margin-top: 25px;">© 2025 PetShop. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
+
+            botoesAdicionar.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const id = event.target.dataset.id;
+                    const nome = event.target.dataset.nome;
+                    const imagem = event.target.dataset.imagem;
+                    const descricao = event.target.dataset.descricao;
+                    const precoTexto = event.target.closest('.produto-card').querySelector('.preco').dataset.preco;
+                    const preco = parseFloat(precoTexto);
+
+                    let carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+
+                    const produtoExistente = carrinho.find(item => item.id === id);
+
+                    if (produtoExistente) {
+                        produtoExistente.quantidade++;
+                    } else {
+                        carrinho.push({
+                            id: id,
+                            nome: nome,
+                            imagem: imagem,
+                            descricao: descricao,
+                            preco: preco,
+                            quantidade: 1
+                        });
+                    }
+
+                    sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+                    alert(`${nome} foi adicionado ao carrinho!`);
+
+                    // Redireciona para a página do carrinho
+                    window.location.href = 'Carrinho de Compras.html'; // Certifique-se que o nome do arquivo está correto
+                });
+            });
+        });
+    </script>
+</body>
+</html>
